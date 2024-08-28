@@ -18,6 +18,7 @@ const StyledNumberListContainer = styled.div`
 const StyledNumberList = styled.button`
   font-size: 1rem;
   background: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
   border: none;
   flex-wrap: wrap;
   border-radius: 5px;
