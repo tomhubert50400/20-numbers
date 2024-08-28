@@ -28,9 +28,23 @@ const StyledRightContainer = styled.div`
   align-items: flex-start;
   color: #a5a5a5;
   text-align: center;
+  @media (min-width: 768px) {
+    align-items: center;
+  }
 `;
 
-const Title = styled.h1``;
+const Title = styled.h1`
+  font-size: 2.5rem;
+  margin-bottom: 4rem;
+  @media (min-width: 768px) {
+    font-size: 4rem;
+  margin-bottom: 4rem;
+`;
+
+const HighScoreStyled = styled.h2`
+  font-size: 3rem;
+  margin-bottom: 1rem;
+`;
 
 function App() {
   const [numbers, setNumbers] = useState(Array(20).fill(null)); // Liste de 20 emplacements, initialisés à null
@@ -112,8 +126,9 @@ function App() {
         </StyledLeftContainer>
         <StyledRightContainer>
           <Title>20 Numbers Challenge</Title>
-          <h2>Highest Score: {highScore}</h2>
+
           <NumberInput number={currentNumber} />
+          <HighScoreStyled>Highest Score: {highScore}</HighScoreStyled>
         </StyledRightContainer>
       </StyledAppContainer>
       {gameOver && <GameOverModal onReset={resetGame} isWinner={isWinner} />}

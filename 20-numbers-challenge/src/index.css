@@ -8,6 +8,7 @@
   html {
     background-color: #002A1E;
     margin: 0;
+    overflow-y: hidden;
   }
 
   body {

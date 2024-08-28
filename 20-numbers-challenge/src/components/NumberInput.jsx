@@ -5,6 +5,9 @@ const NumberInputContainer = styled.div`
   margin-top: 1rem;
 `;
 
+const NumberInputText = styled.p`
+  font-size: 2rem;
+`;
 const CurrentNumber = styled.p`
   font-size: 4rem;
   margin-top: 3rem;
@@ -13,7 +16,7 @@ const CurrentNumber = styled.p`
 function NumberInput({ number }) {
   return (
     <NumberInputContainer>
-      <h2>Current Number:</h2>
+      <NumberInputText>Current Number:</NumberInputText>
       <CurrentNumber>{number}</CurrentNumber>
     </NumberInputContainer>
   );
