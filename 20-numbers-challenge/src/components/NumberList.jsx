@@ -43,9 +43,17 @@ const StyledNumberList = styled.button`
 `;
 
 const NumberButtonP = styled.p`
+  font-size: 12px;
   margin: 0;
   padding: 0;
   align-self: center;
+
+  @media (min-width: 768px) {
+    font-size: 1rem;
+  }
+  @media (min-width: 1024px) {
+    font-size: 1.5rem;
+  }
 `;
 
 function NumberList({ numbers, onPlaceNumber, gameOver }) {
