@@ -65,7 +65,6 @@ function App() {
     return Math.floor(Math.random() * 1001);
   }
 
-  // Assurez-vous que updateHighScore est définie avant handlePlaceNumber
   function updateHighScore(currentScore) {
     if (currentScore > highScore) {
       setHighScore(currentScore);
