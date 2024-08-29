@@ -47,15 +47,14 @@ const HighScoreStyled = styled.h2`
 `;
 
 function App() {
-  const [numbers, setNumbers] = useState(Array(20).fill(null)); // Liste de 20 emplacements, initialisés à null
+  const [numbers, setNumbers] = useState(Array(20).fill(null));
   const [currentNumber, setCurrentNumber] = useState(generateRandomNumber());
   const [gameOver, setGameOver] = useState(false);
-  const [isWinner, setIsWinner] = useState(false); // Nouvel état pour suivre si l'utilisateur a gagné
+  const [isWinner, setIsWinner] = useState(false);
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
 
   useEffect(() => {
-    // Charger le meilleur score depuis le local storage
     const storedHighScore = localStorage.getItem("highScore");
     if (storedHighScore) {
       setHighScore(parseInt(storedHighScore, 10));
@@ -67,11 +66,10 @@ function App() {
   }
 
   function handlePlaceNumber(index) {
-    if (gameOver) return; // Empêcher les interactions si le jeu est terminé
+    if (gameOver) return;
 
     const newNumbers = [...numbers];
 
-    // Vérification que le placement est valide
     if (
       (index === 0 ||
         newNumbers[index - 1] === null ||
@@ -82,9 +80,8 @@ function App() {
     ) {
       newNumbers[index] = currentNumber;
       setNumbers(newNumbers);
-      setScore(score + 1); // Incrémenter le score à chaque placement correct
+      setScore(score + 1);
 
-      // Vérifie si le jeu est terminé (tous les emplacements sont remplis)
       if (newNumbers.every((num) => num !== null)) {
         setIsWinner(true);
         setGameOver(true);
@@ -94,7 +91,7 @@ function App() {
       }
     } else {
       setIsWinner(false);
-      setGameOver(true); // Défaite si le placement est incorrect
+      setGameOver(true);
       updateHighScore(score);
     }
   }

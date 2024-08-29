@@ -63,12 +63,11 @@ function NumberList({ numbers, onPlaceNumber, gameOver }) {
         <StyledNumberList
           key={index}
           onClick={() => onPlaceNumber(index)}
-          disabled={number !== null || gameOver} // Désactiver si déjà placé ou si le jeu est terminé
+          disabled={number !== null || gameOver}
         >
           <NumberButtonP>
             {index + 1}: {number !== null ? number : ""}{" "}
           </NumberButtonP>
-          {/* Affiche le numéro ou '---' si vide */}
         </StyledNumberList>
       ))}
     </StyledNumberListContainer>
