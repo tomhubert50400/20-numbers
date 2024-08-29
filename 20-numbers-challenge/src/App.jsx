@@ -65,19 +65,27 @@ function App() {
     return Math.floor(Math.random() * 1001);
   }
 
+  // Assurez-vous que updateHighScore est définie avant handlePlaceNumber
+  function updateHighScore(currentScore) {
+    if (currentScore > highScore) {
+      setHighScore(currentScore);
+      localStorage.setItem("highScore", currentScore);
+    }
+  }
+
   function handlePlaceNumber(index) {
     if (gameOver) return;
 
     const newNumbers = [...numbers];
 
-    if (
-      (index === 0 ||
-        newNumbers[index - 1] === null ||
-        newNumbers[index - 1] < currentNumber) &&
-      (index === newNumbers.length - 1 ||
-        newNumbers[index + 1] === null ||
-        newNumbers[index + 1] > currentNumber)
-    ) {
+    const canPlace = newNumbers.every((num, i) => {
+      if (num === null) return true;
+      if (i < index && num > currentNumber) return false;
+      if (i > index && num < currentNumber) return false;
+      return true;
+    });
+
+    if (canPlace) {
       newNumbers[index] = currentNumber;
       setNumbers(newNumbers);
       setScore(score + 1);
@@ -93,13 +101,6 @@ function App() {
       setIsWinner(false);
       setGameOver(true);
       updateHighScore(score);
-    }
-  }
-
-  function updateHighScore(currentScore) {
-    if (currentScore > highScore) {
-      setHighScore(currentScore);
-      localStorage.setItem("highScore", currentScore);
     }
   }
 
@@ -125,7 +126,8 @@ function App() {
           <Title>20 Numbers Challenge</Title>
 
           <NumberInput number={currentNumber} />
-          <HighScoreStyled>Highest Score: {highScore}</HighScoreStyled>
+          <HighScoreStyled>Score : {score}</HighScoreStyled>
+          <HighScoreStyled>Highest : {highScore}</HighScoreStyled>
         </StyledRightContainer>
       </StyledAppContainer>
       {gameOver && <GameOverModal onReset={resetGame} isWinner={isWinner} />}
