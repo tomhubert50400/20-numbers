@@ -1,17 +1,55 @@
 @font-face {
-    font-family: 'Minecraft';
-    src: url('./assets/fonts/minecraft.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-  }
-  
-  html {
-    background-color: #002A1E;
-    margin: 0;
-    overflow-y: hidden;
-  }
+  font-family: 'Minecraft';
+  src: url('./assets/fonts/minecraft.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
-  body {
-    font-family: 'Minecraft', sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1419 100%);
+  background-attachment: fixed;
+  margin: 0;
+  overflow-y: auto;
+  min-height: 100vh;
+}
+
+body {
+  font-family: 'Minecraft', 'Courier New', monospace;
+  color: #ffffff;
+  min-height: 100vh;
+}
+
+/* Effet de particules animées en arrière-plan */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(0, 255, 255, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 0, 255, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 40% 20%, rgba(0, 255, 150, 0.05) 0%, transparent 50%);
+  animation: backgroundPulse 10s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes backgroundPulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
   }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.05);
+  }
+}
   
