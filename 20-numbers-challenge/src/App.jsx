@@ -3,6 +3,7 @@ import styled, { keyframes } from "styled-components";
 import NumberList from "./components/NumberList";
 import NumberInput from "./components/NumberInput";
 import GameOverModal from "./components/GameOverModal";
+import InstructionsModal from "./components/InstructionsModal";
 
 const glowAnimation = keyframes`
   0%, 100% {
@@ -35,6 +36,13 @@ const MobileHeader = styled.div`
   }
 `;
 
+const TitleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+`;
+
 const MobileTitle = styled.h1`
   font-size: 2rem;
   background: linear-gradient(135deg, #00ffff 0%, #ff00ff 50%, #00ff96 100%);
@@ -49,6 +57,84 @@ const MobileTitle = styled.h1`
   
   @media (min-width: 768px) {
     font-size: 2.5rem;
+  }
+`;
+
+const Title = styled.h1`
+  display: none;
+  font-size: 2.5rem;
+  background: linear-gradient(135deg, #00ffff 0%, #ff00ff 50%, #00ff96 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: ${glowAnimation} 3s ease-in-out infinite;
+  text-align: center;
+  margin-bottom: 1rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  order: 2;
+  margin: 0;
+  
+  @media (min-width: 1024px) {
+    display: block;
+    font-size: 4.5rem;
+    margin-bottom: 2rem;
+    order: 1;
+  }
+`;
+
+const DesktopTitleWrapper = styled.div`
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  order: 2;
+  
+  @media (min-width: 1024px) {
+    display: flex;
+    order: 1;
+  }
+`;
+
+const HelpButton = styled.button`
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.15) 0%, rgba(255, 0, 255, 0.15) 100%);
+  border: 2px solid rgba(0, 255, 255, 0.35);
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #00ffff;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(0, 255, 255, 0.2);
+  flex-shrink: 0;
+  
+  &:hover {
+    background: linear-gradient(135deg, rgba(0, 255, 255, 0.25) 0%, rgba(255, 0, 255, 0.25) 100%);
+    border-color: rgba(0, 255, 255, 0.5);
+    box-shadow: 0 4px 12px rgba(0, 255, 255, 0.3);
+    transform: scale(1.1);
+  }
+  
+  &:active {
+    transform: scale(1.05);
+  }
+  
+  @media (min-width: 768px) {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.4rem;
+  }
+  
+  @media (min-width: 1024px) {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.6rem;
   }
 `;
 
@@ -115,27 +201,6 @@ const StyledRightContainer = styled.div`
   }
 `;
 
-const Title = styled.h1`
-  display: none;
-  font-size: 2.5rem;
-  background: linear-gradient(135deg, #00ffff 0%, #ff00ff 50%, #00ff96 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: ${glowAnimation} 3s ease-in-out infinite;
-  text-align: center;
-  margin-bottom: 1rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  order: 2;
-  
-  @media (min-width: 1024px) {
-    display: block;
-    font-size: 4.5rem;
-    margin-bottom: 2rem;
-    order: 1;
-  }
-`;
 
 const NumberInputWrapper = styled.div`
   display: none;
@@ -242,6 +307,7 @@ function App() {
   const [isWinner, setIsWinner] = useState(false);
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
+  const [showInstructions, setShowInstructions] = useState(false);
 
   useEffect(() => {
     const storedHighScore = localStorage.getItem("highScore");
@@ -303,7 +369,10 @@ function App() {
   return (
     <StyledAppWrapper>
       <MobileHeader>
-        <MobileTitle>20 Numbers Challenge</MobileTitle>
+        <TitleWrapper>
+          <MobileTitle>20 Numbers Challenge</MobileTitle>
+          <HelpButton onClick={() => setShowInstructions(true)}>?</HelpButton>
+        </TitleWrapper>
         <MobileScoresTop>
           <MobileScoreBox>
             <MobileScoreLabel>Score</MobileScoreLabel>
@@ -327,7 +396,10 @@ function App() {
           />
         </StyledLeftContainer>
         <StyledRightContainer>
-          <Title>20 Numbers Challenge</Title>
+          <DesktopTitleWrapper>
+            <Title>20 Numbers Challenge</Title>
+            <HelpButton onClick={() => setShowInstructions(true)}>?</HelpButton>
+          </DesktopTitleWrapper>
           <NumberInputWrapper>
             <NumberInput number={currentNumber} />
           </NumberInputWrapper>
@@ -346,6 +418,7 @@ function App() {
         </StyledRightContainer>
       </StyledAppContainer>
       {gameOver && <GameOverModal onReset={resetGame} isWinner={isWinner} score={score} />}
+      {showInstructions && <InstructionsModal onClose={() => setShowInstructions(false)} />}
     </StyledAppWrapper>
   );
 }
