@@ -30,7 +30,7 @@ const MobileHeader = styled.div`
   gap: 1rem;
   margin-bottom: 2rem;
   width: 100%;
-  
+
   @media (min-width: 1024px) {
     display: none;
   }
@@ -54,7 +54,7 @@ const MobileTitle = styled.h1`
   letter-spacing: 2px;
   text-transform: uppercase;
   margin: 0;
-  
+
   @media (min-width: 768px) {
     font-size: 2.5rem;
   }
@@ -74,7 +74,7 @@ const Title = styled.h1`
   text-transform: uppercase;
   order: 2;
   margin: 0;
-  
+
   @media (min-width: 1024px) {
     display: block;
     font-size: 4.5rem;
@@ -89,7 +89,7 @@ const DesktopTitleWrapper = styled.div`
   justify-content: center;
   gap: 1rem;
   order: 2;
-  
+
   @media (min-width: 1024px) {
     display: flex;
     order: 1;
@@ -97,7 +97,11 @@ const DesktopTitleWrapper = styled.div`
 `;
 
 const HelpButton = styled.button`
-  background: linear-gradient(135deg, rgba(0, 255, 255, 0.15) 0%, rgba(255, 0, 255, 0.15) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(0, 255, 255, 0.15) 0%,
+    rgba(255, 0, 255, 0.15) 100%
+  );
   border: 2px solid rgba(0, 255, 255, 0.35);
   border-radius: 50%;
   width: 2rem;
@@ -113,24 +117,28 @@ const HelpButton = styled.button`
   backdrop-filter: blur(10px);
   box-shadow: 0 2px 8px rgba(0, 255, 255, 0.2);
   flex-shrink: 0;
-  
+
   &:hover {
-    background: linear-gradient(135deg, rgba(0, 255, 255, 0.25) 0%, rgba(255, 0, 255, 0.25) 100%);
+    background: linear-gradient(
+      135deg,
+      rgba(0, 255, 255, 0.25) 0%,
+      rgba(255, 0, 255, 0.25) 100%
+    );
     border-color: rgba(0, 255, 255, 0.5);
     box-shadow: 0 4px 12px rgba(0, 255, 255, 0.3);
     transform: scale(1.1);
   }
-  
+
   &:active {
     transform: scale(1.05);
   }
-  
+
   @media (min-width: 768px) {
     width: 2.5rem;
     height: 2.5rem;
     font-size: 1.4rem;
   }
-  
+
   @media (min-width: 1024px) {
     width: 3rem;
     height: 3rem;
@@ -153,7 +161,7 @@ const StyledAppContainer = styled.div`
   margin: 0 auto;
   filter: ${({ gameOver }) => (gameOver ? "blur(8px)" : "none")};
   transition: filter 0.3s ease;
-  
+
   @media (min-width: 1024px) {
     flex-direction: row;
     justify-content: space-between;
@@ -169,7 +177,7 @@ const StyledLeftContainer = styled.div`
   align-items: center;
   order: 2;
   width: 100%;
-  
+
   @media (min-width: 1024px) {
     align-items: flex-start;
     order: 1;
@@ -180,7 +188,7 @@ const MobileNumberInputWrapper = styled.div`
   width: 100%;
   margin-bottom: 1.5rem;
   margin-top: 0;
-  
+
   @media (min-width: 1024px) {
     display: none;
   }
@@ -193,7 +201,7 @@ const StyledRightContainer = styled.div`
   align-items: center;
   gap: 2rem;
   order: 1;
-  
+
   @media (min-width: 1024px) {
     align-items: center;
     flex: 1.2;
@@ -201,11 +209,10 @@ const StyledRightContainer = styled.div`
   }
 `;
 
-
 const NumberInputWrapper = styled.div`
   display: none;
   order: 1;
-  
+
   @media (min-width: 1024px) {
     display: block;
     order: 2;
@@ -215,7 +222,7 @@ const NumberInputWrapper = styled.div`
 const ScoreContainerWrapper = styled.div`
   display: none;
   order: 3;
-  
+
   @media (min-width: 1024px) {
     display: block;
     order: 3;
@@ -228,7 +235,7 @@ const ScoreContainer = styled.div`
   gap: 1rem;
   width: 100%;
   max-width: 400px;
-  
+
   @media (min-width: 768px) {
     flex-direction: row;
     justify-content: center;
@@ -237,33 +244,41 @@ const ScoreContainer = styled.div`
 `;
 
 const ScoreBox = styled.div`
-  background: linear-gradient(135deg, rgba(0, 255, 255, 0.08) 0%, rgba(255, 0, 255, 0.08) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(0, 255, 255, 0.08) 0%,
+    rgba(255, 0, 255, 0.08) 100%
+  );
   border: 2px solid rgba(0, 255, 255, 0.25);
   border-radius: 12px;
   padding: 1.5rem 2rem;
   text-align: center;
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 16px rgba(0, 255, 255, 0.08),
-              inset 0 0 15px rgba(0, 255, 255, 0.03);
+    inset 0 0 15px rgba(0, 255, 255, 0.03);
   transition: all 0.3s ease;
-  
+
   &:hover {
     border-color: rgba(0, 255, 255, 0.4);
     box-shadow: 0 6px 20px rgba(0, 255, 255, 0.15),
-                inset 0 0 20px rgba(0, 255, 255, 0.06);
+      inset 0 0 20px rgba(0, 255, 255, 0.06);
     transform: translateY(-2px);
   }
 `;
 
 const MobileScoreBox = styled.div`
-  background: linear-gradient(135deg, rgba(0, 255, 255, 0.08) 0%, rgba(255, 0, 255, 0.08) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(0, 255, 255, 0.08) 0%,
+    rgba(255, 0, 255, 0.08) 100%
+  );
   border: 2px solid rgba(0, 255, 255, 0.25);
   border-radius: 8px;
   padding: 0.5rem 1rem;
   text-align: center;
   backdrop-filter: blur(10px);
   box-shadow: 0 2px 8px rgba(0, 255, 255, 0.08),
-              inset 0 0 10px rgba(0, 255, 255, 0.03);
+    inset 0 0 10px rgba(0, 255, 255, 0.03);
 `;
 
 const ScoreLabel = styled.div`
@@ -279,7 +294,7 @@ const ScoreValue = styled.div`
   font-weight: bold;
   color: #00ffff;
   text-shadow: 0 0 6px rgba(0, 255, 255, 0.3);
-  
+
   @media (min-width: 768px) {
     font-size: 3rem;
   }
@@ -308,6 +323,7 @@ function App() {
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
   const [showInstructions, setShowInstructions] = useState(false);
+  const [usedNumbers, setUsedNumbers] = useState(new Set());
 
   useEffect(() => {
     const storedHighScore = localStorage.getItem("highScore");
@@ -316,8 +332,20 @@ function App() {
     }
   }, []);
 
-  function generateRandomNumber() {
-    return Math.floor(Math.random() * 1001);
+  function generateRandomNumber(excludeNumbers = new Set()) {
+    let newNumber;
+    let attempts = 0;
+    const maxAttempts = 10000;
+
+    do {
+      newNumber = Math.floor(Math.random() * 1001);
+      attempts++;
+      if (attempts > maxAttempts) {
+        break;
+      }
+    } while (excludeNumbers.has(newNumber));
+
+    return newNumber;
   }
 
   function updateHighScore(currentScore) {
@@ -344,12 +372,16 @@ function App() {
       setNumbers(newNumbers);
       setScore(score + 1);
 
+      const newUsedNumbers = new Set(usedNumbers);
+      newUsedNumbers.add(currentNumber);
+      setUsedNumbers(newUsedNumbers);
+
       if (newNumbers.every((num) => num !== null)) {
         setIsWinner(true);
         setGameOver(true);
         updateHighScore(score + 1);
       } else {
-        setCurrentNumber(generateRandomNumber());
+        setCurrentNumber(generateRandomNumber(newUsedNumbers));
       }
     } else {
       setIsWinner(false);
@@ -360,6 +392,7 @@ function App() {
 
   function resetGame() {
     setNumbers(Array(20).fill(null));
+    setUsedNumbers(new Set());
     setCurrentNumber(generateRandomNumber());
     setGameOver(false);
     setIsWinner(false);
@@ -417,8 +450,12 @@ function App() {
           </ScoreContainerWrapper>
         </StyledRightContainer>
       </StyledAppContainer>
-      {gameOver && <GameOverModal onReset={resetGame} isWinner={isWinner} score={score} />}
-      {showInstructions && <InstructionsModal onClose={() => setShowInstructions(false)} />}
+      {gameOver && (
+        <GameOverModal onReset={resetGame} isWinner={isWinner} score={score} />
+      )}
+      {showInstructions && (
+        <InstructionsModal onClose={() => setShowInstructions(false)} />
+      )}
     </StyledAppWrapper>
   );
 }
