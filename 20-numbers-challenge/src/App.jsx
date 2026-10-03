@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import NumberList from "./components/NumberList";
 import NumberInput from "./components/NumberInput";
@@ -159,7 +159,7 @@ const StyledAppContainer = styled.div`
   gap: 0;
   max-width: 1400px;
   margin: 0 auto;
-  filter: ${({ gameOver }) => (gameOver ? "blur(8px)" : "none")};
+  filter: ${({ $gameOver }) => ($gameOver ? "blur(8px)" : "none")};
   transition: filter 0.3s ease;
 
   @media (min-width: 1024px) {
@@ -417,7 +417,7 @@ function App() {
           </MobileScoreBox>
         </MobileScoresTop>
       </MobileHeader>
-      <StyledAppContainer gameOver={gameOver}>
+      <StyledAppContainer $gameOver={gameOver}>
         <StyledLeftContainer>
           <MobileNumberInputWrapper>
             <NumberInput number={currentNumber} mobile={true} />

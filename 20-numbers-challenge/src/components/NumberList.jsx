@@ -1,14 +1,5 @@
-import React from "react";
-import styled, { keyframes } from "styled-components";
-
-const gridPulse = keyframes`
-  0%, 100% {
-    opacity: 0.3;
-  }
-  50% {
-    opacity: 0.6;
-  }
-`;
+import PropTypes from "prop-types";
+import styled from "styled-components";
 
 const StyledNumberListContainer = styled.div`
   display: grid;
@@ -185,5 +176,11 @@ function NumberList({ numbers, onPlaceNumber, gameOver }) {
     </StyledNumberListContainer>
   );
 }
+
+NumberList.propTypes = {
+  numbers: PropTypes.arrayOf(PropTypes.number).isRequired,
+  onPlaceNumber: PropTypes.func.isRequired,
+  gameOver: PropTypes.bool.isRequired,
+};
 
 export default NumberList;
