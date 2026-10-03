@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 import styled, { keyframes } from "styled-components";
 
 const pulse = keyframes`
@@ -35,7 +35,7 @@ const NumberInputContainer = styled.div`
   width: 100%;
   max-width: 500px;
   
-  ${({ mobile }) => mobile && `
+  ${({ $mobile }) => $mobile && `
     gap: 0.75rem;
     max-width: 100%;
     margin-top: 0;
@@ -49,7 +49,7 @@ const NumberInputText = styled.p`
   letter-spacing: 3px;
   text-align: center;
   
-  ${({ mobile }) => mobile && `
+  ${({ $mobile }) => $mobile && `
     font-size: 0.7rem;
     letter-spacing: 1px;
     margin-bottom: 0;
@@ -70,7 +70,7 @@ const CurrentNumberContainer = styled.div`
   position: relative;
   overflow: hidden;
   
-  ${({ mobile }) => mobile && `
+  ${({ $mobile }) => $mobile && `
     padding: 0.75rem 1.5rem;
     border-radius: 12px;
     border-width: 2px;
@@ -97,15 +97,6 @@ const CurrentNumberContainer = styled.div`
   }
 `;
 
-const shine = keyframes`
-  0% {
-    transform: translateX(-100%) translateY(-100%) rotate(45deg);
-  }
-  100% {
-    transform: translateX(100%) translateY(100%) rotate(45deg);
-  }
-`;
-
 const CurrentNumber = styled.p`
   font-size: 4rem;
   font-weight: bold;
@@ -115,7 +106,7 @@ const CurrentNumber = styled.p`
   z-index: 1;
   text-align: center;
   
-  ${({ mobile }) => mobile && `
+  ${({ $mobile }) => $mobile && `
     font-size: 2rem;
     animation: none;
     text-shadow: 0 0 6px rgba(0, 255, 255, 0.3);
@@ -132,13 +123,18 @@ const CurrentNumber = styled.p`
 
 function NumberInput({ number, mobile = false }) {
   return (
-    <NumberInputContainer mobile={mobile}>
-      <NumberInputText mobile={mobile}>Current Number</NumberInputText>
-      <CurrentNumberContainer mobile={mobile}>
-        <CurrentNumber mobile={mobile}>{number}</CurrentNumber>
+    <NumberInputContainer $mobile={mobile}>
+      <NumberInputText $mobile={mobile}>Current Number</NumberInputText>
+      <CurrentNumberContainer $mobile={mobile}>
+        <CurrentNumber $mobile={mobile}>{number}</CurrentNumber>
       </CurrentNumberContainer>
     </NumberInputContainer>
   );
 }
+
+NumberInput.propTypes = {
+  number: PropTypes.number.isRequired,
+  mobile: PropTypes.bool,
+};
 
 export default NumberInput;

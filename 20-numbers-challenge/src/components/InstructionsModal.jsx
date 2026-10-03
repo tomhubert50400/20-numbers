@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 import styled, { keyframes } from "styled-components";
 
 const modalAppear = keyframes`
@@ -209,5 +209,9 @@ function InstructionsModal({ onClose }) {
     </StyledInstructionsModal>
   );
 }
+
+InstructionsModal.propTypes = {
+  onClose: PropTypes.func.isRequired,
+};
 
 export default InstructionsModal;

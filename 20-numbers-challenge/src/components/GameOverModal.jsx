@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 import styled, { keyframes } from "styled-components";
 
 const modalAppear = keyframes`
@@ -45,13 +45,13 @@ const StyledGameOverModal = styled.div`
   transform: translate(-50%, -50%);
   padding: 3rem;
   background: linear-gradient(135deg, rgba(10, 14, 39, 0.95) 0%, rgba(26, 31, 58, 0.95) 100%);
-  border: 2px solid ${({ isWinner }) => isWinner ? 'rgba(0, 255, 150, 0.4)' : 'rgba(0, 255, 255, 0.4)'};
+  border: 2px solid ${({ $isWinner }) => $isWinner ? 'rgba(0, 255, 150, 0.4)' : 'rgba(0, 255, 255, 0.4)'};
   border-radius: 20px;
   text-align: center;
   z-index: 1000;
   backdrop-filter: blur(20px);
   animation: ${modalAppear} 0.3s ease-out,
-             ${({ isWinner }) => isWinner ? winGlow : glowPulse} 3s ease-in-out infinite;
+             ${({ $isWinner }) => $isWinner ? winGlow : glowPulse} 3s ease-in-out infinite;
   max-width: 90%;
   width: 500px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
@@ -62,14 +62,14 @@ const ModalTitle = styled.h2`
   margin-bottom: 1.5rem;
   background: linear-gradient(
     135deg,
-    ${({ isWinner }) => isWinner ? '#00ff96, #00cc77' : '#00ffff, #0099cc'}
+    ${({ $isWinner }) => $isWinner ? '#00ff96, #00cc77' : '#00ffff, #0099cc'}
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-transform: uppercase;
   letter-spacing: 2px;
-  text-shadow: 0 0 8px ${({ isWinner }) => isWinner ? 'rgba(0, 255, 150, 0.3)' : 'rgba(0, 255, 255, 0.3)'};
+  text-shadow: 0 0 8px ${({ $isWinner }) => $isWinner ? 'rgba(0, 255, 150, 0.3)' : 'rgba(0, 255, 255, 0.3)'};
   
   @media (min-width: 768px) {
     font-size: 2.5rem;
@@ -139,8 +139,8 @@ const RestartButton = styled.button`
 
 function GameOverModal({ onReset, isWinner, score }) {
   return (
-    <StyledGameOverModal isWinner={isWinner}>
-      <ModalTitle isWinner={isWinner}>
+    <StyledGameOverModal $isWinner={isWinner}>
+      <ModalTitle $isWinner={isWinner}>
         {isWinner ? "Victory!" : "Game Over"}
       </ModalTitle>
       <ScoreDisplay>
@@ -150,5 +150,11 @@ function GameOverModal({ onReset, isWinner, score }) {
     </StyledGameOverModal>
   );
 }
+
+GameOverModal.propTypes = {
+  onReset: PropTypes.func.isRequired,
+  isWinner: PropTypes.bool.isRequired,
+  score: PropTypes.number.isRequired,
+};
 
 export default GameOverModal;
